@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/nmphux/nmphux/main/assets/banner.png" alt="Hi, I'm Phú" style="width:100%; max-width:900px; border-radius:24px; box-shadow: 0 28px 60px rgba(0, 0, 0, 0.16);" />
+  <img src="https://raw.githubusercontent.com/nmphux/nmphux/main/banner.png" alt="Hi, I'm Phú" style="width:100%; max-width:900px; border-radius:24px; box-shadow: 0 28px 60px rgba(0, 0, 0, 0.16);" />
 </div>
 
 <div align="center" style="margin-top: 24px;">
