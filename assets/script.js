@@ -10,8 +10,30 @@
  */
 
 // Theme switching handler
+// Storage access is wrapped in try/catch: some mobile contexts (in-app
+// browsers such as Zalo/Messenger/Facebook, Safari private mode, or a
+// browser with strict privacy settings) throw on localStorage access
+// instead of just returning null. Since this file has no
+// DOMContentLoaded wrapper, an uncaught throw here would stop every
+// addEventListener registration below it from ever running — i.e. the
+// mobile menu, the theme toggle itself, the contact form, and the chat
+// widget would all silently stop working for that visitor.
+function safeGetStorage(key, fallback) {
+  try {
+    return localStorage.getItem(key) || fallback;
+  } catch (e) {
+    return fallback;
+  }
+}
+
+function safeSetStorage(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch (e) {}
+}
+
 const themeToggleBtn = document.getElementById("theme-toggle");
-const storedTheme = localStorage.getItem("color-theme");
+const storedTheme = safeGetStorage("color-theme", null);
 const prefersDark =
   window.matchMedia &&
   window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -27,12 +49,12 @@ themeToggleBtn.addEventListener("click", () => {
     document.documentElement.classList.remove("dark");
     themeToggleBtn.classList.remove("p-2.5");
     themeToggleBtn.classList.add("p-1.5");
-    localStorage.setItem("color-theme", "light");
+    safeSetStorage("color-theme", "light");
   } else {
     document.documentElement.classList.add("dark");
     themeToggleBtn.classList.remove("p-1.5");
     themeToggleBtn.classList.add("p-2.5");
-    localStorage.setItem("color-theme", "dark");
+    safeSetStorage("color-theme", "dark");
   }
 });
 
@@ -848,20 +870,6 @@ function hidePhoneNumber() {
 (function () {
   const PROXY_ENDPOINT = "https://proxy-ca-nhan.phumintsnguyen.workers.dev/";
   const REQUEST_TIMEOUT_MS = 150000;
-
-  function safeGetStorage(key, fallback) {
-    try {
-      return localStorage.getItem(key) || fallback;
-    } catch (e) {
-      return fallback;
-    }
-  }
-
-  function safeSetStorage(key, value) {
-    try {
-      localStorage.setItem(key, value);
-    } catch (e) {}
-  }
 
   function getCookieValue(name) {
     const match = document.cookie.match(
