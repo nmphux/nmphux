@@ -175,10 +175,14 @@ section[id] {
   flex-direction: column;
   align-items: flex-end;
   gap: 0.75rem;
+  pointer-events: none;
   font-family: Inter, system-ui, sans-serif;
 }
 
 .portfolio-chat-panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.75rem);
   width: min(420px, calc(100vw - 2rem));
   height: min(640px, calc(100vh - 7rem));
   min-height: 440px;
@@ -219,11 +223,7 @@ section[id] {
   padding: 0.85rem 1rem;
   color: #fff;
   background:
-    linear-gradient(
-      135deg,
-      rgba(59, 130, 246, 0.98),
-      rgba(16, 185, 129, 0.92)
-    ),
+    linear-gradient(135deg, rgba(59, 130, 246, 0.98), rgba(16, 185, 129, 0.92)),
     #3b82f6;
 }
 
@@ -297,21 +297,13 @@ section[id] {
   padding: 1rem;
   overflow-y: auto;
   background:
-    radial-gradient(
-      circle at 0 0,
-      rgba(59, 130, 246, 0.08),
-      transparent 30%
-    ),
+    radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.08), transparent 30%),
     #f8fafc;
 }
 
 .dark .portfolio-chat-messages {
   background:
-    radial-gradient(
-      circle at 0 0,
-      rgba(0, 210, 255, 0.12),
-      transparent 32%
-    ),
+    radial-gradient(circle at 0 0, rgba(0, 210, 255, 0.12), transparent 32%),
     #030712;
 }
 
@@ -525,6 +517,7 @@ section[id] {
 }
 
 #chat-toggle {
+  pointer-events: auto;
   position: relative;
   width: 3.5rem;
   height: 3.5rem;
@@ -669,8 +662,8 @@ section[id] {
   color: #2563eb;
   background: #f1f5f9;
   font-family:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", monospace;
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    monospace;
   font-size: 0.86em;
 }
 
