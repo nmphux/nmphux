@@ -73,6 +73,34 @@ section[id] {
   animation: float 8s ease-in-out infinite;
 }
 
+/* Remote badge: nhẹ, liên tục (không nặng) */
+@keyframes remotePulse {
+  0%,
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 0 0 rgba(0, 210, 255, 0);
+    opacity: 0.92;
+  }
+  50% {
+    transform: translateY(-1px);
+    box-shadow: 0 0 16px rgba(0, 210, 255, 0.22);
+    opacity: 1;
+  }
+}
+
+.remote-badge {
+  animation: remotePulse 2.8s ease-in-out infinite;
+  padding: 0.12rem 0.4rem;
+  border: 1px solid rgba(0, 210, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(0, 210, 255, 0.06);
+}
+
+.dark .remote-badge {
+  background: rgba(0, 210, 255, 0.08);
+  border-color: rgba(0, 210, 255, 0.28);
+}
+
 /* Glassmorphism utility */
 .glassmorphism {
   backdrop-filter: blur(16px) saturate(180%);
